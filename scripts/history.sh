@@ -5,9 +5,6 @@ login_ip=$(echo "$whoami_txt" | awk -F"[()]" '{print $2}')
 login_user=$(echo "$whoami_txt" | awk '{print $1}')
 login_tty=$(echo "$whoami_txt" | awk '{print $2}')
 
-touch /opt/logs/.histlog
-chmod 666 /opt/logs/.histlog
-
 > ~/.bash_history
 
 export PROMPT_COMMAND='{
@@ -15,7 +12,7 @@ export PROMPT_COMMAND='{
   pid=$$;
   pname=$(ps -p $pid -o comm=);
 
-  echo "$(date "+%b %e %T") $(hostname) USER=$(whoami) ; TTY='"$login_tty"' ; LOGIN_IP='"$login_ip"' ; PWD=$(pwd) ; COMMAND=$cmd ; PROCESS=$pname ; PID=$pid ;"
+  echo "$(date +"%Y-%m-%dT%H:%M:%S%:z") $(hostname) USER=$(whoami) ; TTY='"$login_tty"' ; LOGIN_IP='"$login_ip"' ; PWD=$(pwd) ; COMMAND=$cmd ; PROCESS=$pname ; PID=$pid ;"
 } >> /opt/logs/.histlog'
 
 if [ -z "$(readonly -p | grep PROMPT_COMMAND)" ]; then
