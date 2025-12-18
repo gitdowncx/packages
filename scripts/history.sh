@@ -12,9 +12,5 @@ export PROMPT_COMMAND='{
   pid=$$;
   pname=$(ps -p $pid -o comm=);
 
-  echo "$(date +"%Y-%m-%dT%H:%M:%S%:z") $(hostname) USER=$(whoami) ; TTY='"$login_tty"' ; LOGIN_IP='"$login_ip"' ; PWD=$(pwd) ; COMMAND=$cmd ; PROCESS=$pname ; PID=$pid ;"
+  echo "$(date +"%Y-%m-%dT%H:%M:%S%:z") $(hostname) USER=$(whoami) ; TTY='"$login_tty"' ; LOGIN_IP='"$login_ip"' ; PROCESS=$pname ; PID=$pid ; COMMAND=$cmd ; PWD=$(pwd) ;"
 } >> /opt/logs/.histlog'
-
-if [ -z "$(readonly -p | grep PROMPT_COMMAND)" ]; then
-  readonly PROMPT_COMMAND
-fi
